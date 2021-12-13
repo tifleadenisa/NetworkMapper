@@ -32,6 +32,7 @@ if __name__ == '__main__':
     for i in range(2, len(sys.argv)):
         port_parameters.append(sys.argv[i])
 
+    print("The following addresses are up: ")
     up_addresses = []
     for ip_address in network.hosts():
         scanner = nmap.PortScanner()
@@ -39,6 +40,7 @@ if __name__ == '__main__':
         scanner.scan(host, '1', '-v')
         if scanner[host].state() == "up":
             up_addresses.append(str(ip_address))
+            print(ip_address)
 
     if len(sys.argv) > 2:
         print("Testing the ports that were given as parameters for the above addresses")
